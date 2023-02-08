@@ -7,17 +7,16 @@ public class LAAB2 {
         static int numNames = 0;
         
         public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
+            Scanner scan = new Scanner(System.in);
             int choice;
             do {
-                System.out.println("Menu:");
                 System.out.println("1. Enter a name");
                 System.out.println("2. Search for a name");
                 System.out.println("3. Remove a name");
                 System.out.println("4. Show all names");
-                System.out.println("0. Exit");
+                System.out.println("5. Exit");
                 System.out.print("Enter your choice: ");
-                choice = sc.nextInt();
+                choice = scan.nextInt();
     
                 switch (choice) {
                     case 1:
@@ -38,12 +37,12 @@ public class LAAB2 {
                         break;
                 }
             } while (choice != 0);
-            sc.close();
+            scan.close();
         }
     
-        static void enterName(Scanner sc) {
+        static void enterName(Scanner scan) {
             System.out.print("Enter a name: ");
-            String name = sc.next();
+            String name = scan.next();
             if (numNames == Names) {
                 System.out.println("Array is full. Cannot enter more names.");
             } else if (isNameExists(name)) {
@@ -55,9 +54,9 @@ public class LAAB2 {
         }
     
         
-        static void searchName(Scanner sc) {
+        static void searchName(Scanner scan) {
             System.out.print("Enter a name to search: ");
-            String name = sc.next();
+            String name = scan.next();
             int index = searchNameIndex(name);
             if (index == -1) {
                 System.out.println("Name not found.");
@@ -67,9 +66,9 @@ public class LAAB2 {
         }
     
     
-        static void removeName(Scanner sc) {
+        static void removeName(Scanner scan) {
             System.out.print("Enter a name to remove: ");
-            String name = sc.next();
+            String name = scan.next();
             int index = searchNameIndex(name);
             if (index == -1) {
                 System.out.println("Name not found.");
