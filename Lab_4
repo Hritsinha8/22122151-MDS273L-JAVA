@@ -1,0 +1,100 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class BankAccount {
+    // Global variables
+    private int accountNumber;
+    private String accountHolderName;
+    private double accountBalance;
+    private ArrayList<String> transactions;
+    
+    // Constructor to initialize the customer
+    public BankAccount(int accountNumber, String accountHolderName, double accountBalance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.accountBalance = accountBalance;
+        this.transactions = new ArrayList<String>();
+    }
+    
+    // Function to deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            accountBalance += amount;
+            transactions.add(String.format("Deposit of %.2f", amount));
+            System.out.println("Deposit successful.");
+        } else {
+            System.out.println("Invalid amount.");
+        }
+    }
+    
+    // Function to withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= accountBalance) {
+            accountBalance -= amount;
+            transactions.add(String.format("Withdrawal of %.2f", amount));
+            System.out.println("Withdrawal successful.");
+        } else {
+            System.out.println("Invalid amount or insufficient balance.");
+        }
+    }
+    
+    // Function to print the transactions
+    public void printTransactions() {
+        System.out.println("Transaction history:");
+        for (String transaction : transactions) {
+            System.out.println(transaction);
+        }
+    }
+    
+    // Function to print account summary
+    public void printAccountSummary() {
+        System.out.println("Account summary:");
+        System.out.println("Account number: " + accountNumber);
+        System.out.println("Account holder name: " + accountHolderName);
+        System.out.println("Account balance: " + accountBalance);
+    }
+    
+    // Main method to run the program
+    public static void main(String[] args) {
+        // Initialize the customer
+        BankAccount customer = new BankAccount(123456, "John Doe", 1000.0);
+        
+        // Menu-driven program
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+        do {
+            System.out.println("Menu:");
+            System.out.println("1. Deposit money");
+            System.out.println("2. Withdraw money");
+            System.out.println("3. Print transactions");
+            System.out.println("4. Print account summary");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the amount to deposit: ");
+                    double depositAmount = scanner.nextDouble();
+                    customer.deposit(depositAmount);
+                    break;
+                case 2:
+                    System.out.print("Enter the amount to withdraw: ");
+                    double withdrawalAmount = scanner.nextDouble();
+                    customer.withdraw(withdrawalAmount);
+                    break;
+                case 3:
+                    customer.printTransactions();
+                    break;
+                case 4:
+                    customer.printAccountSummary();
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+        } while (choice != 5);
+    }
+}
