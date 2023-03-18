@@ -1,0 +1,108 @@
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+class Student {
+    private int regNo;
+    private String name, email, phone, stdClass, department;
+
+    public Student(int regNo, String name, String email, String phone, String stdClass, String department) {
+        this.regNo = regNo;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.stdClass = stdClass;
+        this.department = department;
+        
+        // Save student details to file
+        this.saveToFile();
+    }
+
+    private void saveToFile() {
+        try {
+            FileWriter file = new FileWriter(this.name + ".txt");
+            file.write("Reg No.: " + this.regNo + "\n");
+            file.write("Name: " + this.name + "\n");
+            file.write("Email: " + this.email + "\n");
+            file.write("Phone: " + this.phone + "\n");
+            file.write("Class: " + this.stdClass + "\n");
+            file.write("Department: " + this.department + "\n");
+            file.close();
+            System.out.println("Details saved to file: " + this.name + ".txt");
+        } catch (IOException e) {
+            System.out.println("Error saving details to file: " + this.name + ".txt");
+            e.printStackTrace();
+        }
+    }
+
+    public void printDetails() {
+        System.out.println("Reg No.: " + this.regNo);
+        System.out.println("Name: " + this.name);
+        System.out.println("Email: " + this.email);
+        System.out.println("Phone: " + this.phone);
+        System.out.println("Class: " + this.stdClass);
+        System.out.println("Department: " + this.department);
+    }
+
+    public int getRegNo() {
+        return this.regNo;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+}
+
+public class Main {
+    private static Scanner scanner = new Scanner(System.in);
+    private static Student[] students = new Student[100];
+    private static int studentCount = 0;
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add a student");
+            System.out.println("2. Search for a student");
+            System.out.println("3. Display all students");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    addStudent();
+                    break;
+                case 2:
+                    searchStudent();
+                    break;
+                case 3:
+                    displayAllStudents();
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+                    break;
+            }
+        }
+    }
+
+    private static void addStudent() {
+        System.out.print("Enter Reg No.: ");
+        int regNo = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Enter Phone: ");
+        String phone = scanner.nextLine();
+        System.out.print("Enter Class: ");
+        String stdClass = scanner.nextLine();
+        System.out.print("Enter Department: ");
+        String department = scanner.nextLine();
+
+        students[studentCount++] = new Student(regNo, name, email, phone,
