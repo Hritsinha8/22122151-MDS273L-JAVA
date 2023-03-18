@@ -106,3 +106,5 @@ public class Main {
         String department = scanner.nextLine();
 
         students[studentCount++] = new Student(regNo, name, email, phone,
+
+
