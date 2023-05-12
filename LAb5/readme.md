@@ -1,0 +1,3 @@
+# FLOWCHART
+
+![5](https://github.com/Hritsinha8/22122151-MDS273L-JAVA/assets/113588348/95650340-6f9f-4b09-a1e7-b34651213307)
